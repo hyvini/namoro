@@ -2,122 +2,286 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Era uma vez...</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Era uma vez...</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: 'Pacifico', cursive;
+    background: linear-gradient(to top, #ffdee9, #b5fffc);
+    overflow-x: hidden;
+    cursor: url('https://cdn-icons-png.flaticon.com/512/833/833472.png'), auto; /* coração cursor */
+  }
+  header {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 40px 20px 30px;
+    animation: fadeInDown 2s ease-in-out;
+  }
+  .heart {
+    color: red;
+    animation: pulse 1.5s infinite;
+  }
+  #carta {
+    max-width: 700px;
+    background: white;
+    margin: 0 auto 40px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    line-height: 1.7em;
+    font-size: 1.2em;
+    min-height: 220px;
+    position: relative;
+    user-select: none;
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Pacifico', cursive;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  button#sim {
+    background-color: #ff69b4;
+    color: white;
+    animation: bounce 2s infinite;
+  }
+  button#sim:hover {
+    background-color: #ff1493;
+  }
+  button#nao {
+    background-color: #bbb;
+    color: #333;
+  }
+  button#nao:hover {
+    background-color: #999;
+    color: white;
+  }
+  .hidden {
+    display: none !important;
+  }
 
-    body {
-      font-family: 'Pacifico', cursive;
-      background: linear-gradient(to top, #ffdee9, #b5fffc);
-      color: #333;
-      overflow-x: hidden;
-    }
+  /* Máquina de escrever */
+  .typing {
+    border-right: .15em solid #666;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-    header {
-      text-align: center;
-      padding: 60px 20px 20px;
-      font-size: 2.5em;
-      animation: fadeInDown 2s ease-in-out;
-    }
+  /* Animações */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 
-    .heart {
-      color: red;
-      animation: pulse 1.5s infinite;
+  /* Partículas de corações */
+  #heart-container {
+    position: fixed;
+    pointer-events: none;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: visible;
+    z-index: 9999;
+  }
+  .heart-particle {
+    position: absolute;
+    font-size: 24px;
+    animation: fall 3s linear forwards;
+    user-select: none;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
     }
-
-    .carta {
-      max-width: 700px;
-      background: white;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      animation: fadeInUp 2s ease-in-out;
-      line-height: 1.7em;
-      font-size: 1.2em;
-    }
-
-    .carta:hover {
-      transform: scale(1.02);
-      transition: 0.3s;
-    }
-
-    .botao {
-      display: block;
-      margin: 40px auto;
-      padding: 15px 30px;
-      background-color: #ff69b4;
-      color: white;
-      font-size: 1.3em;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      animation: bounce 2s infinite;
-    }
-
-    .botao:hover {
-      background-color: #ff1493;
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    Era uma vez um amor <span class="heart">❤</span>
-  </header>
 
-  <div class="carta">
-    <p>
-      Desde o primeiro dia, mesmo de longe, você conquistou meu coração com o seu jeitinho único. Cada conversa, cada risada, cada momento contigo se tornou parte da história mais bonita que já vivi.
-    </p>
-    <p>
-      À distância, nosso amor provou que a conexão verdadeira não conhece barreiras. Mesmo separados por telas, te sinto perto em cada detalhe do meu dia. Você me inspira, me acalma e me faz querer ser melhor.
-    </p>
-    <p>
-      Por isso, depois de tantos momentos especiais, só me resta uma pergunta:
-    </p>
-    <p style="text-align: center; font-size: 1.6em; margin: 30px 0;">
-      Quer namorar comigo? 💍💗
-    </p>
-  </div>
+<header>Era uma vez um amor <span class="heart">❤</span></header>
 
-  <button class="botao" onclick="resposta()">Sim, quero! 💖</button>
+<div id="carta">
+  <p>
+    Você achou que aquele pedido de ontem foi tão básico e que eu deixaria por assim? Sério? Logo eu, que sou T.I., ia fazer algo simples?
+  </p>
+  <p>
+    Desde o primeiro dia, mesmo de longe, você conquistou meu coração com o seu jeitinho único. Cada conversa, cada risada, cada momento contigo se tornou parte da história mais bonita que já vivi.
+  </p>
+  <p>
+    À distância, nosso amor provou que a conexão verdadeira não conhece barreiras. Mesmo separados por telas, te sinto perto em cada detalhe do meu dia. Você me inspira, me acalma e me faz querer ser melhor.
+  </p>
+  <p>
+    Por isso, depois de tantos momentos especiais, só me resta uma pergunta:
+  </p>
+  <p style="font-size: 1.6em; margin-top: 20px;">Quer namorar comigo? 💍💗</p>
+</div>
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2023/03/19/audio_7efbab41b0.mp3?filename=romantic-melody-144265.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+<div class="button-group">
+  <button id="sim">Sim, quero! 💖</button>
+  <button id="nao">Não, acho que não...</button>
+</div>
 
-  <script>
-    function resposta() {
-      alert('Você acabou de deixar alguém MUITO feliz! 🥹💘');
+<div id="heart-container"></div>
+
+<audio id="confete-sound" src="https://cdn.pixabay.com/download/audio/2022/05/06/audio_88cc6c96e7.mp3?filename=party-pop-6468.mp3"></audio>
+
+<script>
+  const carta = document.getElementById('carta');
+  const btnSim = document.getElementById('sim');
+  const btnNao = document.getElementById('nao');
+  const heartContainer = document.getElementById('heart-container');
+  const confeteSound = document.getElementById('confete-sound');
+
+  // Botão "Não" foge quando tenta clicar
+  btnNao.addEventListener('mouseenter', () => {
+    const containerWidth = window.innerWidth - btnNao.offsetWidth;
+    const containerHeight = window.innerHeight - btnNao.offsetHeight;
+    const randomX = Math.floor(Math.random() * containerWidth);
+    const randomY = Math.floor(Math.random() * containerHeight);
+    btnNao.style.position = 'absolute';
+    btnNao.style.left = randomX + 'px';
+    btnNao.style.top = randomY + 'px';
+  });
+
+  // Função máquina de escrever
+  function typeWriter(text, element, delay = 40, callback) {
+    element.innerHTML = '';
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, delay);
+      } else if (callback) {
+        callback();
+      }
     }
+    typing();
+  }
+
+  // Sequência após clicar em "Sim"
+  btnSim.addEventListener('click', () => {
+    // Desabilita botões
+    btnSim.disabled = true;
+    btnNao.disabled = true;
+    btnNao.style.position = '';
+    btnNao.style.left = '';
+    btnNao.style.top = '';
+
+    carta.innerHTML = `<p id="typing-text" class="typing"></p>`;
+    typeWriter('Você tem certeza disso? Mesmo? 💖', document.getElementById('typing-text'), 50, () => {
+      setTimeout(() => {
+        carta.innerHTML += `
+          <div class="button-group" style="margin-top: 30px;">
+            <button id="confirm-sim">Sim, com certeza!</button>
+            <button id="confirm-nao">Não, errei!</button>
+          </div>
+        `;
+        document.getElementById('confirm-sim').addEventListener('click', simFinal);
+        document.getElementById('confirm-nao').addEventListener('click', naoFinal);
+      }, 500);
+    });
+  });
+
+  function simFinal() {
+    carta.innerHTML = `
+      <p style="font-size: 1.3em; line-height: 1.7em;">
+        Você acabou de deixar alguém MUITO feliz! 🥹💘<br><br>
+        Mal posso esperar para escrever a nossa história juntos, cheia de amor, risadas e momentos inesquecíveis.
+      </p>
+      <button id="voltar" style="margin-top: 30px;">Voltar</button>
+    `;
+    document.getElementById('voltar').addEventListener('click', voltarInicio);
+    startHearts();
+    confeteSound.play();
+  }
+
+  function naoFinal() {
+    carta.innerHTML = `
+      <p style="font-size: 1.4em; color: #aa0033;">
+        Ops! Parece que apertou no botão errado, bobinha! 😜<br><br>
+        Dá pra tentar de novo, eu acredito em você!
+      </p>
+      <button id="voltar" style="margin-top: 30px;">Voltar</button>
+    `;
+    document.getElementById('voltar').addEventListener('click', voltarInicio);
+  }
+
+  function voltarInicio() {
+    carta.innerHTML = `
+      <p>
+        Você achou que aquele pedido de ontem foi tão básico e que eu deixaria por assim? Sério? Logo eu, que sou T.I., ia fazer algo simples?
+      </p>
+      <p>
+        Desde o primeiro dia, mesmo de longe, você conquistou meu coração com o seu jeitinho único. Cada conversa, cada risada, cada momento contigo se tornou parte da história mais bonita que já vivi.
+      </p>
+      <p>
+        À distância, nosso amor provou que a conexão verdadeira não conhece barreiras. Mesmo separados por telas, te sinto perto em cada detalhe do meu dia. Você me inspira, me acalma e me faz querer ser melhor.
+      </p>
+      <p>
+        Por isso, depois de tantos momentos especiais, só me resta uma pergunta:
+      </p>
+      <p style="font-size: 1.6em; margin-top: 20px;">
+        Quer namorar comigo? 💍💗
+      </p>
+    `;
+    btnSim.disabled = false;
+    btnNao.disabled = false;
+    btnNao.style.position = '';
+    btnNao.style.left = '';
+    btnNao.style.top = '';
+  }
+
+  // Função para criar corações caindo
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-particle');
+    heart.textContent = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (12 + Math.random() * 24) + 'px';
+    heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+    heartContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  // Iniciar chuva de corações por 5 segundos
+  function startHearts() {
+    let interval = setInterval(createHeart, 200);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+</script>
+
+</body>
+</html>
   </script>
 </body>
 </html>
