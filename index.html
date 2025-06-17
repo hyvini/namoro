@@ -5,82 +5,119 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Era uma vez...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(to top, #ffdee9, #b5fffc);
       color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
       text-align: center;
-      padding: 20px;
+      padding: 60px 20px 20px;
+      font-size: 2.5em;
+      animation: fadeInDown 2s ease-in-out;
     }
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+    .heart {
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+
+    .carta {
       max-width: 700px;
-    }
-    h1 {
-      font-size: 2em;
-      color: #e91e63;
-    }
-    p {
+      background: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      animation: fadeInUp 2s ease-in-out;
+      line-height: 1.7em;
       font-size: 1.2em;
-      margin: 20px 0;
     }
-    .btn {
-      background-color: #e91e63;
-      color: white;
+
+    .carta:hover {
+      transform: scale(1.02);
+      transition: 0.3s;
+    }
+
+    .botao {
+      display: block;
+      margin: 40px auto;
       padding: 15px 30px;
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1.3em;
       border: none;
-      border-radius: 30px;
-      font-size: 1.2em;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background-color 0.3s;
-      margin-top: 30px;
+      animation: bounce 2s infinite;
     }
-    .btn:hover {
-      background-color: #d81b60;
+
+    .botao:hover {
+      background-color: #ff1493;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>✨ Era uma vez...</h1>
-    <p>Era uma vez um garoto chamado Vinícius que vivia sua vida normal — acordava, ria de memes, jogava, ouvia música…<br>
-    Mas um dia, do nada, ele conheceu alguém diferente: a Sofia.</p>
+  <header>
+    Era uma vez um amor <span class="heart">❤</span>
+  </header>
 
-    <p>Ela apareceu como quem não quer nada… mas foi ficando.<br>
-    E quanto mais eles se falavam, mais o mundo parecia mudar de cor.</p>
-
-    <p>Ela era leve. Sincera. Doce.<br>
-    Fazia ele sorrir com uma frase boba e sentir saudade mesmo depois de passar o dia inteiro conversando.</p>
-
-    <p>Aos poucos, o que era simples virou essencial.</p>
-
-    <p>Mesmo com a distância, ele sentia que ela estava perto.<br>
-    No bom dia com carinho, no emoji fofo, no jeito dela cuidar…<br>
-    E no fundo do coração, ele sabia:</p>
-
-    <p><em>Não era só uma amiga.<br>
-    Não era só alguém.<br>
-    Era ela.</em></p>
-
-    <p>O garoto ficou pensando em como poderia dizer isso de um jeito bonito.<br>
-    Como mostrar que, mesmo longe, ele queria estar perto dela de todas as formas possíveis.</p>
-
-    <p>E agora ele tá aqui… criando esse momento.<br>
-    Pra te dizer, com todo o coração:</p>
-
-    <h1>💖 Sofia, você aceita namorar comigo?</h1>
-
-    <button class="btn" onclick="alert('Eu sabia que você ia dizer sim! 😍')">Sim 💖</button>
+  <div class="carta">
+    <p>
+      Desde o primeiro dia, mesmo de longe, você conquistou meu coração com o seu jeitinho único. Cada conversa, cada risada, cada momento contigo se tornou parte da história mais bonita que já vivi.
+    </p>
+    <p>
+      À distância, nosso amor provou que a conexão verdadeira não conhece barreiras. Mesmo separados por telas, te sinto perto em cada detalhe do meu dia. Você me inspira, me acalma e me faz querer ser melhor.
+    </p>
+    <p>
+      Por isso, depois de tantos momentos especiais, só me resta uma pergunta:
+    </p>
+    <p style="text-align: center; font-size: 1.6em; margin: 30px 0;">
+      Quer namorar comigo? 💍💗
+    </p>
   </div>
+
+  <button class="botao" onclick="resposta()">Sim, quero! 💖</button>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/19/audio_7efbab41b0.mp3?filename=romantic-melody-144265.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    function resposta() {
+      alert('Você acabou de deixar alguém MUITO feliz! 🥹💘');
+    }
+  </script>
 </body>
 </html>
